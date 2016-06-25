@@ -1,13 +1,8 @@
 var VideoListEntry = (props) => {
 
 
-  var videoOnClicked = (event) => {
-    console.log('fhasjdjfh');
-    $('.video-list-entry').trigger('click');
-  };
-
-  return(
-  <div className="video-list-entry" onClick={videoOnClicked.bind(this)}>
+  return (
+  <div className="video-list-entry" onClick={() => { videoOnClicked(this); }}>
     <div className="media-left media-middle">
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
@@ -18,6 +13,7 @@ var VideoListEntry = (props) => {
   </div>
   );
 };
+
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
