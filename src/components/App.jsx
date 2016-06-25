@@ -3,16 +3,28 @@ class App extends React.Component {
     super(props);
   
     this.state = {
+      videos: window.exampleVideoData,
       video: window.exampleVideoData[0]
     };
 
   }
+
   onVideoClick(newVideo) {
     this.setState({
       video: newVideo 
     });
   }
 
+  onSuccess(items) {
+    this.setState({
+      videos: items,
+      video: items[0]
+    });
+  }
+
+  componentDidMount () {
+    this.props.source({key: window.YOUTUBE_API_KEY, q: 'hippos', maxResults: 5}, this.onSuccess.bind(this));
+  }
 
   render() {
     return (
@@ -22,7 +34,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.video}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={window.exampleVideoData} click={this.onVideoClick.bind(this)}/>
+          <VideoList videos={this.state.videos} click={this.onVideoClick.bind(this)}/>
         </div>
       </div>
     );
