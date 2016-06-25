@@ -6,11 +6,11 @@ class App extends React.Component {
       video: window.exampleVideoData[0]
     };
 
-    var onVideoClick = (newVideo) => {
-      this.setState({
-        video: newVideo 
-      });
-    };
+  }
+  onVideoClick(newVideo) {
+    this.setState({
+      video: newVideo 
+    });
   }
 
 

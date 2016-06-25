@@ -1,8 +1,5 @@
-var VideoListEntry = (props) => {
-
-
-  return (
-  <div className="video-list-entry" onClick={() => { videoOnClicked(this); }}>
+var VideoListEntry = (props) => (
+  <div className="video-list-entry" onClick={() => { props.click(props.video); }}>
     <div className="media-left media-middle">
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
@@ -11,8 +8,7 @@ var VideoListEntry = (props) => {
       <div className="video-list-entry-detail">{props.video.snippet.description}</div>
     </div>
   </div>
-  );
-};
+);
 
 
 // PropTypes tell other developers what `props` a component expects
