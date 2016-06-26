@@ -4,7 +4,8 @@ class App extends React.Component {
   
     this.state = {
       videos: window.exampleVideoData,
-      video: window.exampleVideoData[0]
+      video: window.exampleVideoData[0],
+      query: 'silly cats'
     };
 
   }
@@ -22,14 +23,18 @@ class App extends React.Component {
     });
   }
 
+  onSearch(e) {
+    this.props.source({key: window.YOUTUBE_API_KEY, q: e, maxResults: 5}, this.onSuccess.bind(this));
+  }
+
   componentDidMount () {
-    this.props.source({key: window.YOUTUBE_API_KEY, q: 'hippos', maxResults: 5}, this.onSuccess.bind(this));
+    this.props.source({key: window.YOUTUBE_API_KEY, q: this.state.query, maxResults: 5}, this.onSuccess.bind(this));
   }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav search={this.onSearch.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.video}/>
         </div>
